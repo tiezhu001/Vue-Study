@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!--1.方法格式侦听器
+        属性的值 发生变化 就会触发函数
+        必须写在watch里边,并且侦听器方法名 必须是监听的属性名 有两个默认参数
+        第一个newVal,第二个oldValue,可以省略不写
+        如果侦听的是对象的变化，无法触发
+        2.对象格式侦听器
+        可以让侦听器 自动触发一次
+    -->
+    <div id="app">
+        <input type="text" placeholder="请输入用户名" v-model="perseon.username">
+    </div>
+</body>
+
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            perseon:{
+                username:"嘻嘻"
+            }
+        },
+        methods:{
+           
+        },
+
+        watch:{
+            /*
+            方法格式侦听器
+            */
+            // username(newVal,oldVal){
+            //     console.log(`新值是:${newVal},旧值是:${oldVal}`)
+            // }
+
+            // 对象格式侦听器
+            /* 如果只想监听对象某个属性的值变化*/
+            'perseon.username':{
+                handler(newVal,oldVal){
+                    console.log(`新值是:${newVal.username},旧值是:${oldVal}`)
+                },
+                immediate:true, // 默认值 false 控制侦听器自动触发一次，
+            },
+
+            perseon:{
+                handler(newVal,oldVal){
+                    console.log(`新值是:${newVal.username},旧值是:${oldVal}`)
+                },
+                immediate:true, // 默认值 false 控制侦听器自动触发一次，
+                deep:true, // 深度监视 能检测js那种有多层结构的对象,常见于Object
+            }
+        }
+        
+    })
+</script>
+</html>
+<!-- 
+    计算属性和侦听器的区别
+    1.计算属性能实现的 侦听器都能实现,除了异步操作 只能用侦听器 比如 setTimeout 
+    1.记住 姓 名 全名 例子
+
+ -->

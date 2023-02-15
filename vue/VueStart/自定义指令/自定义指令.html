@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+     
+
+    <!-- 指令名称:
+            自定义指令名 如果是多个单词组成用 - 分割,且定义不需要添加v- 使用需要添加上v-
+         定义指令：
+            1.方法方式的定义，局限性 无法在生成实际dom时候去操作dom
+            2.对象方法的定义 可以在钩子函数中定义相应的行为
+                2.1 bind:只调用一次，指令第一次绑定到元素是调用
+                2.2 inserted:被绑定的元素插入真实节点
+                2.3 update:所在指令绑定的元素 值被更新时调用
+     -->
+    <div id="app">
+      <p v-to-up="msg">{{ msg}}</p>
+      <button @click="n++">n++</button>
+      <input type="text" v-fbind="n">
+    </div>
+  </body>
+
+  <script>
+      Vue.directive("name",function(el,binding){
+
+      })
+
+      Vue.directive("name2",{})
+    const app = new Vue({
+      el: "#app",
+      data: {
+        msg: "HelloWhatAreYouDoing",
+        n:0
+      },
+     directives:{
+         // 第一个参数是 当前绑定指令的实际dom元素,第二个参数是 指令所接受到信息(包括传入的值既value属性,还有构造的指令名称等)
+         'to-up'(element,binding){
+           console.log(binding);
+           element.innerText = binding.value.toUpperCase()
+           console.log(element,binding);
+         },
+        fbind:{
+            bind(el,binding){
+                el.value = binding.value;
+            },
+            inserted(el,binding){
+                el.focus();
+            },
+            update(el,binding){
+                el.value = binding.value;
+                el.focus();
+            }
+
+        }
+     }
+      
+    });
+   
+   
+  </script>
+</html>

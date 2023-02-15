@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 插值语法 -->
+        <!-- 双大括号会把数据解释为普通文本而非html代码 -->
+        <span>{{msg}}</span>
+
+        <!-- v-html 输出html -->
+        <p v-html="myhtml"></p>
+
+        <!-- v-bind能绑定html属性的值，插值语法不行 -->
+        <!-- <div id="{{msg}}">插值语法不能绑定id的值</div>  -->
+        <div :id="attr1">v-bind绑定属性的值</div>
+
+        <!--js表达式 -->
+        <div>{{flag?"真":"假"}}</div>
+        <div :id="flag?1:2">v-bind写js表达式</div>
+
+        <br>
+        <br>
+        是否展示列表
+        <ul v-if="isShow">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+
+        <!-- 动态绑定html属性的值 -->
+        <!-- <a v-bind:[attributeName]="url">动态绑定html的属性和值</a> -->
+        <!-- <a v-bind:[attributeName]="url"> ... </a> -->
+        <a href="https://www.bing.com/" @click.prevent="stopPrevent">prevent修饰符阻止默认行为</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script>
+         new Vue({
+            el:"#app",
+            data:{
+                msg:"消息",
+                attr1:"app1",
+                myhtml:"<strong>哈哈哈</strong>",
+                flag:true,
+                isShow:true,
+                url:"www.baidu.com",
+                attributeName:'href',
+            },
+            methods: {
+                stopPrevent(){
+                    alert("prevent修饰符阻止默认行为")
+                }
+            },
+         })
+    </script>
+    
+</body>
+</html>

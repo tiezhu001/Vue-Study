@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <!--总结：
+      1.过滤器适合一些处理一些简单的数据处理,复杂的建议用计算属性解决
+      2.局部过滤器写到filters里边,全部过滤器写到Vue.filter("name",func)
+      3.过滤器本质就是方法，第一个参数 一定是处理的数据的Value,过滤器必须要把处理的数据return 
+
+     -->
+    <div id="app">
+      <h2></h2>
+      <p>{{ msg|tolower | slice4Str}}</p>
+    </div>
+  </body>
+
+  <script>
+      // 全局过滤器
+     Vue.filter("tolower",function(val){
+        return val.toLowerCase();
+    });
+    const app = new Vue({
+      el: "#app",
+      data: {
+        msg: "HelloWhatAreYouDoing",
+      },
+      methods: {
+       
+      },
+      filters:{
+        msgToupper(val){
+            return val.toLowerCase();
+        },
+
+        // 截取前四个字符
+        slice4Str(val){
+          return val.slice(0,4)
+        }
+      }
+    });
+   
+   
+  </script>
+</html>

@@ -1,0 +1,76 @@
+1.今日学习内容
+1.1 Vue 事件修饰符
+	1.1.1 prevent:阻止元素的默认行为 比如a标签 默认有跳转行为 @click.prevent 就会阻止 a标签的跳转行为
+	1.1.2 stop:阻止事件冒泡,html元素的事件 会默认向上传递 比如 点击事件，如果一个div下边有个button div和button都有一个点击事件，那么如果点击button 那么点击事件就会向上传递 引起div元素的点击事件，即使两个元素
+的点击事件不一致 同样会触发div的事件,那么给button的click事件绑定stop修饰 那么button的事件冒泡就不会向上传递,只会触发button的事件 @click.stop
+	1.1.3 还有许多 事件修饰符 再实际使用中再具体应用在学习
+1.2 侦听器和计算属性
+	计算属性
+	1.2.1 计算属性以我的理解来说：计算属性通常是对一个或者多个已经存在的vue管理的属性 进行计算或者格式化等复杂操作,然后再其他地方用到了
+	1.2.2 计算属性 是写在computed 对象中,计算属性 有两种写法 一种是完整的，另一种是简写
+	// fullNames:{
+            //     get(){
+            //         // 当调用fullnames
+            //         return this.firstName+this.lastName;
+            //     },
+            //     // 如果需要修改计算属性的值 可以写setter 没有可以不写
+            //     set(value){
+            //         // 当修改fullnames时
+            //         this.firstName = value.slice(0,1);
+            //         this.lastName=value.slice(1,3);
+            //     }
+            // }
+	
+	 // 计算属性一般只是 多个或者一个属性计算出来的值 并不需要修改
+            fullNames(){
+                return this.firstName+this.lastName;
+            }
+	1.2.3 计算属性的名称可以自定义,在需要使用到的地方直接使用这个名称即可
+
+	侦听器
+	1.侦听器 以我的理解来说 监听某个已存在的元素的变化,当某个元素发生变化那么 就会触发侦听器的handler函数 handle函数 默认有两个参数,第一个是newVal,第二个是oldVal,只需要newVal的话 oldVal
+可以省略
+	2.侦听器 要写在 watch对象中 也有两种写法 第一种是对象形式 第二种是方法形式
+	3.侦听器的名 必须要写成监听属性的名称.如果是监听一个对象里边的某一个值,必须写成 ‘person.name’
+	  /*
+            方法格式侦听器
+	方法格式的侦听器 一般只关注于值得变化,没法配置其他 配置 比如立即触发一次
+            */
+            // username(newVal,oldVal){
+            //     console.log(`新值是:${newVal},旧值是:${oldVal}`)
+            // }
+	 
+	// 对象格式的侦听器
+	  perseon:{
+                handler(newVal,oldVal){
+                    console.log(`新值是:${newVal.username},旧值是:${oldVal}`)
+                },
+                immediate:true, // 默认值 false 控制侦听器自动触发一次，
+                deep:true, // 深度监视 能检测js那种有多层结构的对象,常见于Object
+            }
+	
+	侦听器和计算属性的区别
+	例子：输入 姓 输入 名 显示 姓名
+	对于计算属性的实现：只需要定义一个计算属性 return 姓+名即可
+	对于侦听器的实现:需要定义两个侦听对象 一个是姓 一个是名 因为侦听器可以拿到new和old的值,所以监听姓的时候  用newVal+this.lastName即可 同理 监听名 用this.firstName+newVal 这样定义两个侦听器就实现了，这样无论那个值发生变化 都能引起姓名的变化 需要注意的一点是 你需要额外在data里边定义一个改变后的fullName属性
+
+	比如姓或者名 修改一秒后 才去更新姓名的值 那么只能用侦听器，this执行的原因和计算属性值得原因
+	
+	 fullNames(){
+		settimeout(()=>{
+		   return this.firstName+this.lastName;
+		})             
+            }
+	这样是不行的,因为 fullname获取值 是通过return的返回值拿到的,这样写 并没有返回值 ,就算定义一个值 然后再settimeout函数体去接受 然后返回也是不行的 因为 定时器是一个异步 操作，先执行同步操作,return的值并不是更改后的值
+	
+	用侦听器
+	firstName(newVal){
+	settimeout(()=>{
+		   fullName = newVal+this.lastName;
+		})        
+}
+	因为侦听器并不是用返回值获取值得  只是在得到所监听的值发生变化，就会触发hander函数 既在一秒后firstName发生变化 就会引起fullName的变化,所以自然实现了,需要注意一点的 是 定时器函数必须写成箭头函数,如果要执行的方法体需要用到vm对象，不用无所谓。因为箭头函数没有自己的this 所以会往上找 就找到了firstName,firstName的this是
+就是vm对象,如果写成普通函数 那么this就是window全局对象
+	
+
+	

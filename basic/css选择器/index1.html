@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 选择父元素的所有子元素 */
+      ul li {
+        color: red;
+      }
+      /* 子元素选择器 */
+      div a {
+        /* 这样会选择div下的所有a元素 */
+      }
+
+      /* 只会选择div下的儿子元素 */
+      div > a {
+        color: red;
+      }
+
+      /* 并集选择器 */
+      h2,
+      h3,
+      h4 {
+        color: aquamarine;
+      }
+
+      /* 伪类选择器 用 ：号标识/*/
+      /* 未访问的链接 */
+      a:link {
+        /* 去除链接的下划线 */
+        text-decoration: none;
+        color: #333;
+      }
+
+      /* 访问过的链接 */
+      a:visited {
+        color: orange;
+      }
+      /* 鼠标经过的颜色 */
+      a:hover {
+        color: skyblue;
+      }
+
+      /* 鼠标左键按下 并未弹起的状态 */
+      a:active{
+        color: blueviolet;
+      }
+
+      /* 获取input获取焦点的 */
+      input:focus{
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+
+    <div>
+      <a href="#">哈哈哈</a>
+      <p>
+        <a href="#">hahah</a>
+      </p>
+    </div>
+
+    <h2>h2</h2>
+    <h3>h3</h3>
+    <h4>h4</h4>
+
+    <a href="#">小猪佩奇</a>
+
+    <input type="text">
+    <input type="text">
+    <input type="text">
+  </body>
+</html>

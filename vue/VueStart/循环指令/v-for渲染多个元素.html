@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+        <!-- v-for可以循环字符串/数组/对象 -->
+        <div v-for="item in intArray">{{item}}</div>
+        <div v-for="(item,key) in obj1">{{item}}---{{key}}</div>
+        <ul>
+            <li v-for=""></li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                intArray:[1,2,3],
+                obj1:{
+                    name:'szh',
+                    age:10,
+                    gender:'男'
+                },
+            }
+        })
+    </script>
+  </body>
+</html>

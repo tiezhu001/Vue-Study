@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .basic{
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+
+        .div1{
+            background-color: aqua;
+        }
+
+        .div2{
+            background-color: bisque;
+        }
+
+        .div3{
+            background-color: brown;
+        }
+
+        .div4{
+            background-color: aqua;
+        }
+
+        .div5{
+           font-size: larger;
+           font-weight: 700;
+           color: red;
+        }
+
+        .div6{
+          border-radius: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 绑定的样式的个数确定 但是绑定的样式名不确定 -->
+        <div class="basic" :class="divCls" @click="changeDivclass">
+        </div> <br><br>
+
+        <!-- 绑定的样式不确定 绑定的样式名也不确定 -->
+        <div class="basic" :class="divClsArray" >
+            测试
+            <button @click="popClass">popClass</button>
+            <button @click="pushClass">pushClass</button>
+        </div> <br><br>
+
+        <!-- 绑定的样式确定,个数确定 但是是否使用不确定 -->
+
+        <div class="basic" :class="classObj">
+                111111111111111111
+        </div>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                divCls:'div1',
+                divClsArray:['div4','div5','div6'],
+                classObj:{
+                    div4:true,
+                    div5:true
+                }
+            },
+            methods:{
+                changeDivclass(){
+                    var arr = ['div1','div2','div3']
+                    const index = Math.floor(Math.random()*3);
+                    this.divCls = arr[index]
+                },
+                popClass(){
+                    this.divClsArray.pop()
+                },
+                pushClass(){
+                    const array = ['div4','div5','div6'];
+                    for(item of array){
+                        if(!this.divClsArray.includes(item)){
+                            this.divClsArray.push(item);
+                        }
+                    }
+                },
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 内容渲染指令
+        v-text:会把标签中的内容覆盖
+        -->
+        <p v-text="username">姓名</p> 
+        <p>{{username}}</p>
+        <p v-html="userHtml"></p>
+
+        <!-- 属性绑定指令 v-bind:
+        为元素属性指定值
+        -->
+        <input type="text" v-bind:placeholder="plactholder">
+        <img :src="imgUrl" alt="">
+
+        <!-- v-on:click 绑定事件 -->
+        <p>数值:<span>{{count}}</span></p>
+        <button v-on:click="add">+1</button>
+        <button @click="sub">-1</button>
+    </div>
+</body>
+
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            username:"张三",
+            userHtml:"<strong>李四</strong>",
+            plactholder:"请输入用户名",
+            imgUrl:"http://static.vue-js.com/FoACtDzI5t3Bm4VIrZA3cVm1y7o4",
+            count:0,
+        },
+        methods:{
+            add:function(){
+                this.count++;
+            },
+            //简写方式
+            sub(){
+                this.count--;
+            }
+        }
+    })
+</script>
+</html>

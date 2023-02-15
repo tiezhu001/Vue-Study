@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+      <!-- 总结
+        1.单选框必须指定Value值,v-model 绑定到同一个属性上
+        2.多个多选框指定Value值,v-model绑定到数组上,一个多选框绑定到bool值上
+        3.单选下拉框绑定单个值,多选下拉框绑定到数组上
+        4.事件修饰符
+            lazy:输入框失去焦点再去捕获值
+            trim:js字符串trim
+            number:保证接受到的是数字
+       -->
+    <div id="root">
+      <form @submit.prevent>
+        <label for="account">账号:</label>
+        <input type="number" id="account" v-model.lazy.trim.number="account" /><br /><br />
+        <label for="pwd">密码:</label>
+        <input type="password" id="pwd" v-model="pwd" /><br />
+        男<input type="radio"  value="one" v-model="sex" /> 女
+        <input type="radio" value="two" v-model="sex" /> <br /><br />
+        爱好: 
+        抽烟 <input type="checkbox" value="smoke" v-model="hobby" /> 
+        喝酒 <input type="checkbox" value="hejiu" v-model="hobby"/>
+        烫头 <input type="checkbox" value="tangtou" v-model="hobby" /> <br /><br />
+        所属校区单选:
+        <select v-model="selected">
+          <option disabled value="">请选择</option>
+          <option value="抽烟">抽烟</option>
+          <option value="喝酒">喝酒</option>
+          <option value="烫头">烫头</option>
+        </select>
+        <br /><br />
+
+        其他信息:
+        <textarea name="" id=""></textarea><br /><br />
+        <input type="checkbox" v-model="checked"/>阅读并接受<<用户协议>>
+        <br /><br />
+        <button>提交</button>
+      </form>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          account: "",
+          pwd: "",
+          sex:"",
+          hobby:[],
+          checked:false,
+          selected:'',
+          multipleSelected:[]
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            容器属性
+            1.flex-direction 决定主轴的方向 默认是row 水平排列
+                值可以为:
+                row: 水平排列
+                column: 垂直排列
+                row-reverse :靠右水平翻转排列
+                column-reverse: 靠下垂直翻转排列
+            2.flex-wrap: 项目元素是否换行 默认是不换行
+                值可以为
+                nowarp:默认不换行 如果项目元素的宽度和高度超过父级元素,那么只会平分父级的宽度和高度
+                warp:换行
+                wrap-reverse：换行 第一行在父级元素的最下边
+            3.flex-grow: 是flex-direction和flex-wrap的简写形式 默认值是 row nowarp
+            4.justify-content：定义项目元素在主轴的排列方式
+                值可以为
+                flex-start：主轴方向开始位置 默认
+                flex-end：主轴方向结束位置
+                center:居中对齐
+                space-between:两端对齐,项目元素之间的间隔相等
+                space-around:每个项目的两侧间隔相等,那么元素和元素之间的间隔是比元素和边框的间隔大一倍
+            5.align-item:定义项目元素在交叉轴的对齐方式
+                flex-start:交叉轴的起点开始
+                flex-end：交叉轴的终点对齐
+                center:交叉轴的中点对齐
+                baseline:项目第一行文字的基线对齐
+                stretch：如果项目未设置高度或者auto,将占满容器的高度
+
+
+            项目属性
+            1.order 项目的排列顺序,数值越小 排名越靠前 默认是0
+            2.flex-grow 定义项目的放大比例,默认为0
+                如果所有项目的flex-grow=1 默认他们平分剩余空间
+
+            3.flex-shrink 定义项目的缩小比例 默认是1 空间不足 项目将缩小
+            4.flex-basic 属性定义分配空间之前 项目占据主轴大小
+            5.flex: flex-grow flex-shrink flex-basic的简写
+            6.align-self 定义单个项目不一样的对齐方式 覆盖align-item的属性
+
+
+
+         */
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            margin: 0 auto;
+            width: 600px;
+            height: 800px;
+            background-color: aquamarine;
+        }
+        .container div{
+            /* width: 100px; */
+            height: 100px;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            /* align-items: baseline; */
+            flex-wrap: wrap;
+        }
+        .container div{
+           
+        }
+
+        .a{
+            width: 50px;
+            order: -1;
+            background-color: blue;
+        }
+
+        .b{
+            width: 100px;
+            order: 3;
+            background-color: red;
+            align-self: flex-end;
+        }
+
+        .c{
+            width: 150px;
+            order: 2;
+            flex-shrink: 1;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="a">a</div>
+        <div class="b">b</div>
+        <div class="c">c</div>
+    </div>
+    
+</body>
+</html>

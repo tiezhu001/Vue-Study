@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定位</title>
+    <!-- 
+        相对定位：
+        1.相对定位是相对于自己元素原来的位置进行偏移的
+
+        绝对定位：
+        1.绝对定位是相对于父元素的位置进行定位的,如果父元素没有设置定位,则以浏览器为准定位
+        2.如果定位的元素有多个父元素,那么是相当于最近的一级有定位的父元素进行定位
+        3.绝对定位不占有原来的位置 拖标
+
+        固定定位
+        1.固定定位是以浏览器可视窗口参照
+        2.固定定位和父级元素没有关系
+        3.不随滚动条的滚动而滚动
+
+        定位的叠放顺序
+        z-index: 值越大,放在最上边 压住别的元素
+     -->
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 2000px;
+      }
+
+      /* 绝对定位 不占用原来的位置 */
+
+      /* 相对定位 
+      
+      占有原位置*/
+      .container {
+        width: 600px;
+        height: 450px;
+        background-color: aquamarine;
+        position: relative;
+      }
+
+      .container .content {
+        width: 100%;
+        height: 100%;
+      }
+
+      .left,
+      .right {
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        position: absolute;
+      }
+      .left {
+        top: 50%;
+        left: 0;
+      }
+
+      .right {
+        top: 50%;
+        right: 0;
+      }
+
+      /* 固定定位  不占用原来位置*/
+      .fixed {
+        width: 60px;
+        height: 60px;
+        background-color: aqua;
+        position: fixed;
+        top: 20px;
+        right: 30px;
+      }
+
+      /* 粘性定位 （不常用）
+      */
+      .sticky {
+        width: 60px;
+        height: 60px;
+        background-color: red;
+        position: sticky;
+        top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+
+    <div class="fixed"></div>
+
+    <div class="sticky"></div>
+  </body>
+</html>

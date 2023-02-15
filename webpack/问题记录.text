@@ -1,0 +1,16 @@
+    -- 在webpack中 一切皆包
+
+1.webpack.config.js 配置项mode:打包方式,默认有两种选项,一种是development，一种是product。dev打包速度快，但是对文件压缩比例小。
+
+2.如果使用webpack打包js文件,那么其他页面都用打包后的js文件，那么如果没修改一次js源文件,那么就需要重新打包一次js文件
+    如何解决这种问题
+        --使用webpack插件 进行实时打包 --webpack-dev-server
+
+3.webpack默认只能处理.js结尾的文件,如果是其他格式的文件就需要相应的loader
+    默认配置和下载去webpack文档查看 https://www.webpackjs.com/loaders/
+    --css 
+        -- style-loader css-loader  
+    --less
+        --  style-loader css-loader  less-loader    
+     
+                

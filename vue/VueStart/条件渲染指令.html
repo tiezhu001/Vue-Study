@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-if每次会删除和创建元素 v-show用display:none控制隐藏 -->
+      <p v-if="flag">v-if控制元素的隐藏和显示</p>
+      <p v-show="flag">v-show控制元素的隐藏和显示</p>
+
+      <div v-if="type==='A'">A</div>
+      <div v-else-if="type==='B'">B</div>
+      <div v-else-if="type==='C'">C</div>
+      <div v-else>D</div>
+
+      <!-- 对于 一些节点 用同一个判断是否显示 可以用template包裹这些节点且不会影响原始的html结构 编译后的html不包含template-->
+      <template v-if="flag">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </template>
+    </div>
+  </body>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        flag: true,
+        type: "A",
+      },
+      methods: {},
+    });
+  </script>
+</html>

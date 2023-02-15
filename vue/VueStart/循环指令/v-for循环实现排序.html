@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div>用计算属性实现</div>
+      <input type="text" v-model="keyword2" />
+      <button @click="sortType=1">年龄升序</button>
+      <button @click="sortType=2">年龄降序</button>
+      <button @click="sortType=0">原顺序</button>
+      <ul>
+        <li v-for="(item,index) in newArr2" :key="item.id">
+          姓名:{{item.name}} 年龄:{{item.age}}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          arr: [
+            { id: "001", name: "张三", age: 18 },
+            { id: "002", name: "李四", age: 11 },
+            { id: "003", name: "王五", age: 21 },
+            { id: "004", name: "张三二", age: 22 },
+          ],
+          keyword2: "",
+          sortType:0
+        },
+        computed: {
+            newArr2() {
+              var filterArr= this.arr.filter((item) => {
+                return item.name.indexOf(this.keyword2) != -1;
+              });
+              // 整数不等于0 返回false
+              if(this.sortType){
+                filterArr.sort((fir,sec)=>{
+                    return this.sortType==1?fir.age-sec.age:sec.age-fir.age
+                })
+              }
+              return filterArr;
+            },
+        },
+        methods: {
+          ageUp() {
+            this.newArr2.sort((first, second) => {
+              return first.age - second.age
+            });
+          },
+          ageDown() {},
+          ageOri() {},
+        },
+      });
+    </script>
+  </body>
+</html>

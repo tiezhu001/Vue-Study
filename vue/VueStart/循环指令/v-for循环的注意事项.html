@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 如果循环产生的元素 只是作为展示 后续不需要修改排序那么可以不指定key -->
+      <!-- <ul>
+           <li v-for="(item,index) in arr">姓名:{{item.name}} 年龄:{{item.age}}</li>
+       </ul> -->
+      <br /><br />
+      <div>用侦听器实现</div>
+      <!-- 模糊搜索列表的元素 -->
+      <input type="text" v-model="keyword" />
+      <ul>
+        <li v-for="(item,index) in newArr">
+          姓名:{{item.name}} 年龄:{{item.age}}
+        </li>
+      </ul>
+      <br /><br />
+
+      <div>用计算属性实现</div>
+      <input type="text" v-model="keyword2" />
+      <ul>
+        <li v-for="(item,index) in newArr2" :key="item.id">
+          姓名:{{item.name}} 年龄:{{item.age}}
+        </li>
+      </ul>
+    </div>
+<!-- 
+    为什么vue建议指定key，切key最好唯一
+    1.本质上我们对列表元素的操作,其实是对arr数组的操作，并不是操作html元素,而是操作数据。
+    2.如果使用了key唯一,vue在操作的时候,每次都是模板先翻译成虚拟dom,那么你对数组进行追加或者删除元素,那么第二次虚拟dom转化为实际dom的时候,如果存在已有的key那么会直接使用原来的实际dom，这样节省
+    了翻译dom的时间,效率高
+
+ -->
+
+    <script>
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          arr: [
+            { id: "001", name: "张三", age: 18 },
+            { id: "002", name: "李四", age: 11 },
+            { id: "003", name: "王五", age: 21 },
+            { id: "004", name: "张三二", age: 22 },
+          ],
+          keyword: "",
+          keyword2: "",
+          newArr: [],
+        },
+        computed: {
+          newArr2() {
+            return this.arr.filter((item) => {
+              return item.name.indexOf(this.keyword2) != -1;
+            });
+          },
+        },
+        watch: {
+          // keyword(val){
+          //     this.arr= this.arr.filter((item=>{
+          //         return item.name.indexOf(val)!=-1
+          //     }))
+          // }
+          // 如果使用侦听器实现列表模糊查询,需要额外定义一个新的数组去接受筛选后的值,而且必须加上immediat=true 因为初始数组为空,要想初始有值,那么首先keyword的监听函数就会触发
+          // 因为空字符串是存在任意不为空的字符串，即indexOf不返回-1,那么arr的全部值就会全部赋值给newArr,
+          keyword: {
+            immediate: true,
+            handler() {
+              this.newArr = this.arr.filter((item) => {
+                return item.name.indexOf(this.keyword) != -1;
+              });
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

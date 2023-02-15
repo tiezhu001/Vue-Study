@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <span>姓:{{firstName}}</span>
+        <br>
+        <span>名:{{lastName}}</span>
+        <br>
+        <span>姓名:{{name}}</span>
+        <br>
+        <button @click="modify">修改计算属性的值</button>
+
+        <br>
+        <p>今天天气好{{weather}}</p>
+        <button @click="modyfyWeather">修改天气</button>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                firstName:"张",
+                lastName:"三",
+                isHot:false,
+                weather:""
+            },
+            methods:{
+                modify(){
+                    this.name = "李-王八"
+                },
+                modyfyWeather(){
+                    this.isHot = !this.isHot;
+                }
+            },
+           
+            watch:{
+
+                // 1.监视属性简写(方法)
+                // isHot(newValue,oldValue){
+                //     if(newValue){
+                //         this.weather="炎热"
+                //     }
+                //     else{
+                //         this.weather="寒冷"
+                //     }
+                // },
+
+                // 2.监视属性完整写法(配置形式)
+                isHot:{
+                    immediate:true,
+                    deep:true,
+                    handler(newValue,oldValue){
+                        console.log(newValue,oldValue)
+                    }
+                }
+            },
+           computed:{
+            // 简写
+            // name(){
+            //     return this.firstName+this.lastName;
+            // }
+            
+            // 完整写法
+                name:{
+                    get(){
+                        return this.firstName+"-"+this.lastName;
+                    },
+                    set(value){
+                        const nameArr = value.split("-");
+                        this.firstName = nameArr[0];
+                        this.lastName=nameArr[1];
+                    }
+                }
+           }
+        })
+    </script>
+    
+</body>
+</html>

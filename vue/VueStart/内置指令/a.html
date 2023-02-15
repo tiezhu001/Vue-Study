@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+
+  
+    <div id="app" v-cloak>
+        <div>{{msg}}</div>
+        <!-- v-text 会把元素里边的内容全部替换 包括里边的标签 -->
+        <div v-text="msg">你好</div>
+        <div v-text="msg"><a href="">hahah</a></div>
+
+        <!-- v-html 可以解析html（最好输入的内容不要使用v-html） -->
+        <div v-html="link"></div>
+
+        <!-- v-once 只会第一次加载属性的值,后续属性的值发生变化,显示的值不变化 -->
+        <h2 v-once>初始的n值是{{n}}</h2>
+        <h2>当前的n值是{{n}}</h2>
+        <button @click="n++">n++</button>
+
+        <!-- v-pre 会指示Vue跳过当前节点的模板编译(标签是什么样子 生成的标签就是什么样子) 加快编译速度,常写在没有应用到Vue的语法内容的元素  -->
+        <div v-pre>
+           <div a="10">111111</div>
+        </div>
+
+        <!-- v-clock常用语网路速度慢 界面所需的js加载慢,给标签添加v-clock指令和css想配合解决页面展示{{}}这种 ，等到Vue接管模板编译 会自动删除这个属性 -->
+    </div>
+  </body>
+
+  <script>
+    
+    const app = new Vue({
+      el: "#app",
+      data: {
+        msg: "HelloWhatAreYouDoing",
+        link:'<a href="">hahah</a>',
+        n:0
+      },
+    });
+   
+   
+  </script>
+</html>

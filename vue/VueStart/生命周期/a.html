@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-text="n" id="pp"></p>
+      <button @click="n++">n++</button>
+    </div>
+  </body>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        n: 0,
+      },
+      // 初始化 生命周期、事件 数据代理未开始
+      beforeCreate() {
+          // 也就是无法通过vm对象访问到data中的数据,method中的方法
+          console.log('beforeCreate')
+      },
+       // 初始化 数据监测 数据代理
+      created() {
+          // 可以通过vm访问data的数据和method
+          console.log('created')
+          console.log(this.n)
+      },
+
+      //Vue开始解析模板生成虚拟dom,页面还未显示生成好的内容
+      beforeMount() {
+          // 此过程是未经过VUe编译的dom结构.在此处对dom元素的操作 都不会奏效因为后续VUE会把你的操作给覆盖掉
+          // 在此过程 页面会有一个短暂的值是 哈哈哈 但是 后续通过VUE的解析后 重新显示VUE解析的值
+          // 即使后续没有通过VUE指令绑定值，那么 hahah也不会显示的
+          document.getElementById('pp').innerText = "哈哈哈";
+      },
+
+      mounted() {
+          // 在此过程 dom是编译好的dom 此过程多dom的操作都是有效的尽量避免
+          // 再次过程可以开启定时器 、发送网络请求、订阅消息、绑定自定义事件
+      },
+      beforeDestroy() {
+          // 再次过程vm准备销毁,vm可以获取data和method 但是对数据的改变 不会再引起页面的更新
+          // 再次过程通常是 关闭定时器、取消消息订阅、取消自定义事件  
+      },
+
+
+    });
+  </script>
+</html>

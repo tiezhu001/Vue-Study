@@ -8,6 +8,7 @@
         <!-- <router-link :to="">profile</router-link> -->
         <div>
             <button @click="goProfile">个人信息</button>
+            <button @click="addNum">增加</button>
         </div>
         <router-view></router-view>
     </div>
@@ -23,8 +24,11 @@
     const userStore = useUserStore()
 
     function goProfile(){
-        //console.log("params",route.params)
         router.push(`${route.params.id}/profile`)
+    }
+
+    function addNum(){
+        userStore.add();
     }
 
     function back(){

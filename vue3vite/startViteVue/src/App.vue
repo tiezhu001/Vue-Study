@@ -31,6 +31,8 @@ function setFullName(){
   fullName.value = "li,si"
 }
 
+计划
+
 
 console.log("计算属性为Ref", publishedBooksMessage.value)
 </script>

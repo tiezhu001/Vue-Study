@@ -98,8 +98,6 @@ instance.interceptors.response.use(
       ElMessage.error(msg);
       return Promise.reject(`响应异常=> ${msg}`);
     }
-
-    return response;
   },
   (error) => {
     // 超出 2xx 范围的状态码都会触发该函数。
@@ -119,9 +117,7 @@ instance.interceptors.response.use(
           )
             .then(() => {
               isRelogin.show = false;
-              useUserStore()
-                .logOut()
-                .then(() => {
+              useUserStore().logOut().then(() => {
                   location.href = "/login";
                 });
             })

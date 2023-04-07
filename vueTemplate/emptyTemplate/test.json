@@ -1,0 +1,533 @@
+[
+  {
+    "path": "/",
+    "name": "index",
+    "component": {
+      "name": "BasicLayout",
+      "components": {
+        "SettingDrawer": {
+          "name": "SettingDrawer",
+          "props": {
+            "getContainer": {},
+            "settings": {},
+            "i18nRender": {
+              "type": [null, null],
+              "default": false
+            }
+          },
+          "inject": {
+            "locale": {
+              "from": "locale"
+            }
+          },
+          "methods": {},
+          "_Ctor": {}
+        },
+        "RightContent": {
+          "name": "RightContent",
+          "components": {
+            "AvatarDropdown": {
+              "name": "AvatarDropdown",
+              "props": {
+                "currentUser": {},
+                "menu": {
+                  "default": true
+                }
+              },
+              "methods": {},
+              "staticRenderFns": [],
+              "_compiled": true,
+              "_scopeId": "data-v-4c936209",
+              "beforeCreate": [null],
+              "beforeDestroy": [null],
+              "__file": "src/components/GlobalHeader/AvatarDropdown.vue",
+              "_Ctor": {}
+            },
+            "SelectLang": {
+              "props": {
+                "prefixCls": {
+                  "default": "ant-pro-drop-down"
+                }
+              },
+              "name": "SelectLang",
+              "mixins": [
+                {
+                  "computed": {},
+                  "methods": {}
+                }
+              ],
+              "_Ctor": {}
+            }
+          },
+          "props": {
+            "prefixCls": {
+              "default": "ant-pro-global-header-index-action"
+            },
+            "isMobile": {},
+            "topMenu": {
+              "required": true
+            },
+            "theme": {
+              "required": true
+            }
+          },
+          "computed": {},
+          "staticRenderFns": [],
+          "_compiled": true,
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/components/GlobalHeader/RightContent.vue",
+          "_Ctor": {}
+        },
+        "GlobalFooter": {
+          "name": "ProGlobalFooter",
+          "components": {
+            "GlobalFooter": {
+              "name": "GlobalFooter",
+              "props": {
+                "links": {},
+                "copyright": {
+                  "type": null
+                }
+              },
+              "_Ctor": {}
+            }
+          },
+          "staticRenderFns": [],
+          "_compiled": true,
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/components/GlobalFooter/index.vue",
+          "_Ctor": {}
+        },
+        "Ads": {
+          "props": {},
+          "methods": {},
+          "_scopeId": "data-v-ad75d0b8",
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/components/Other/CarbonAds.vue"
+        }
+      },
+      "computed": {},
+      "methods": {},
+      "staticRenderFns": [],
+      "_compiled": true,
+      "beforeCreate": [null],
+      "beforeDestroy": [null],
+      "_Ctor": {}
+    },
+    "meta": {
+      "title": "首页",
+      "permission": "index"
+    },
+    "redirect": "/dashboard",
+    "children": [
+      {
+        "path": "/dashboard",
+        "name": "dashboard",
+        "component": {
+          "name": "RouteView",
+          "props": {
+            "keepAlive": {
+              "default": true
+            }
+          },
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/layouts/RouteView.vue",
+          "_Ctor": {}
+        },
+        "meta": {
+          "title": "menu.dashboard",
+          "icon": "dashboard",
+          "permission": "dashboard"
+        },
+        "redirect": "/dashboard/workplace",
+        "children": [
+          {
+            "path": "/dashboard/workplace",
+            "name": "workplace",
+            "meta": {
+              "title": "menu.dashboard.monitor",
+              "permission": "workplace"
+            }
+          },
+          {
+            "path": "https://www.baidu.com/",
+            "name": "monitor",
+            "meta": {
+              "title": "menu.dashboard.workplace",
+              "target": "_blank",
+              "permission": "monitor"
+            }
+          },
+          {
+            "path": "/dashboard/analysis",
+            "name": "Analysis",
+            "meta": {
+              "title": "menu.dashboard.analysis",
+              "permission": "Analysis"
+            }
+          }
+        ]
+      },
+      {
+        "path": "/form",
+        "name": "form",
+        "component": {
+          "name": "RouteView",
+          "props": {
+            "keepAlive": {
+              "default": true
+            }
+          },
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/layouts/RouteView.vue",
+          "_Ctor": {}
+        },
+        "meta": {
+          "title": "menu.form",
+          "icon": "form",
+          "permission": "form"
+        },
+        "redirect": "/form/base-form",
+        "children": [
+          {
+            "path": "/form/basic-form",
+            "name": "basic-form",
+            "meta": {
+              "title": "menu.form.basic-form",
+              "permission": "basic-form"
+            }
+          },
+          {
+            "path": "/form/step-form",
+            "name": "step-form",
+            "meta": {
+              "title": "menu.form.step-form",
+              "permission": "step-form"
+            }
+          },
+          {
+            "path": "/form/advanced-form",
+            "name": "advanced-form",
+            "meta": {
+              "title": "menu.form.advanced-form",
+              "permission": "advanced-form"
+            }
+          }
+        ]
+      },
+      {
+        "path": "/list",
+        "name": "list",
+        "component": {
+          "name": "RouteView",
+          "props": {
+            "keepAlive": {
+              "default": true
+            }
+          },
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/layouts/RouteView.vue",
+          "_Ctor": {}
+        },
+        "meta": {
+          "title": "menu.list",
+          "icon": "table",
+          "permission": "list"
+        },
+        "redirect": "/list/table-list",
+        "children": [
+          {
+            "path": "/list/table-list/:pageNo([1-9]\\d*)?",
+            "name": "table-list",
+            "meta": {
+              "title": "menu.list.table-list",
+              "permission": "table-list"
+            }
+          },
+          {
+            "path": "/list/basic-list",
+            "name": "basic-list",
+            "meta": {
+              "title": "menu.list.basic-list",
+              "permission": "basic-list"
+            }
+          },
+          {
+            "path": "/list/card",
+            "name": "card",
+            "meta": {
+              "title": "menu.list.card-list",
+              "permission": "card"
+            }
+          },
+          {
+            "path": "/list/search",
+            "name": "search",
+            "meta": {
+              "title": "menu.list.search-list",
+              "permission": "search"
+            },
+            "redirect": "/list/search/article",
+            "children": [
+              {
+                "path": "/list/search/article",
+                "name": "article",
+                "meta": {
+                  "title": "menu.list.search-list.articles",
+                  "permission": "article"
+                }
+              },
+              {
+                "path": "/list/search/project",
+                "name": "project",
+                "meta": {
+                  "title": "menu.list.search-list.projects",
+                  "permission": "project"
+                }
+              },
+              {
+                "path": "/list/search/application",
+                "name": "application",
+                "meta": {
+                  "title": "menu.list.search-list.applications",
+                  "permission": "application"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "/profile",
+        "name": "profile",
+        "component": {
+          "name": "RouteView",
+          "props": {
+            "keepAlive": {
+              "default": true
+            }
+          },
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/layouts/RouteView.vue",
+          "_Ctor": {}
+        },
+        "meta": {
+          "title": "menu.profile",
+          "icon": "profile",
+          "permission": "profile"
+        },
+        "redirect": "/profile/basic",
+        "children": [
+          {
+            "path": "/profile/basic",
+            "name": "basic",
+            "meta": {
+              "title": "menu.profile.basic",
+              "permission": "basic"
+            }
+          },
+          {
+            "path": "/profile/advanced",
+            "name": "advanced",
+            "meta": {
+              "title": "menu.profile.advanced",
+              "permission": "advanced"
+            }
+          }
+        ]
+      },
+      {
+        "path": "/result",
+        "name": "result",
+        "component": {
+          "name": "PageView",
+          "staticRenderFns": [],
+          "_compiled": true,
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/layouts/PageView.vue"
+        },
+        "meta": {
+          "title": "menu.result",
+          "icon": "check-circle-o",
+          "permission": "result"
+        },
+        "redirect": "/result/success",
+        "children": [
+          {
+            "path": "/result/success",
+            "name": "success",
+            "meta": {
+              "title": "menu.result.success",
+              "hiddenHeaderContent": true,
+              "permission": "success"
+            }
+          },
+          {
+            "path": "/result/fail",
+            "name": "fail",
+            "meta": {
+              "title": "menu.result.fail",
+              "hiddenHeaderContent": true,
+              "permission": "fail"
+            }
+          }
+        ]
+      },
+      {
+        "path": "/exception",
+        "name": "exception",
+        "component": {
+          "name": "RouteView",
+          "props": {
+            "keepAlive": {
+              "default": true
+            }
+          },
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/layouts/RouteView.vue",
+          "_Ctor": {}
+        },
+        "meta": {
+          "title": "menu.exception",
+          "icon": "warning",
+          "permission": "exception"
+        },
+        "redirect": "/exception/403",
+        "children": [
+          {
+            "path": "/exception/403",
+            "name": "403",
+            "meta": {
+              "title": "menu.exception.not-permission",
+              "permission": "403"
+            }
+          },
+          {
+            "path": "/exception/404",
+            "name": "404",
+            "meta": {
+              "title": "menu.exception.not-find",
+              "permission": "404"
+            }
+          },
+          {
+            "path": "/exception/500",
+            "name": "500",
+            "meta": {
+              "title": "menu.exception.server-error",
+              "permission": "500"
+            }
+          }
+        ]
+      },
+      {
+        "path": "/account",
+        "name": "account",
+        "component": {
+          "name": "RouteView",
+          "props": {
+            "keepAlive": {
+              "default": true
+            }
+          },
+          "beforeCreate": [null],
+          "beforeDestroy": [null],
+          "__file": "src/layouts/RouteView.vue",
+          "_Ctor": {}
+        },
+        "meta": {
+          "title": "menu.account",
+          "icon": "user",
+          "permission": "account"
+        },
+        "redirect": "/account/center",
+        "children": [
+          {
+            "path": "/account/center",
+            "name": "center",
+            "meta": {
+              "title": "menu.account.center",
+              "permission": "center"
+            }
+          },
+          {
+            "path": "/account/settings",
+            "name": "settings",
+            "meta": {
+              "title": "menu.account.settings",
+              "permission": "settings"
+            },
+            "hideChildrenInMenu": true,
+            "redirect": "/account/settings/basic",
+            "children": [
+              {
+                "path": "/account/settings/basic",
+                "name": "BasicSettings",
+                "meta": {
+                  "title": "account.settings.menuMap.basic",
+                  "permission": "BasicSettings",
+                  "hidden": true
+                },
+                "hidden": true
+              },
+              {
+                "path": "/account/settings/security",
+                "name": "SecuritySettings",
+                "meta": {
+                  "title": "account.settings.menuMap.security",
+                  "permission": "SecuritySettings",
+                  "hidden": true
+                },
+                "hidden": true
+              },
+              {
+                "path": "/account/settings/custom",
+                "name": "CustomSettings",
+                "meta": {
+                  "title": "account.settings.menuMap.custom",
+                  "permission": "CustomSettings",
+                  "hidden": true
+                },
+                "hidden": true
+              },
+              {
+                "path": "/account/settings/binding",
+                "name": "BindingSettings",
+                "meta": {
+                  "title": "account.settings.menuMap.binding",
+                  "permission": "BindingSettings",
+                  "hidden": true
+                },
+                "hidden": true
+              },
+              {
+                "path": "/account/settings/notification",
+                "name": "NotificationSettings",
+                "meta": {
+                  "title": "account.settings.menuMap.notification",
+                  "permission": "NotificationSettings",
+                  "hidden": true
+                },
+                "hidden": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "*",
+    "redirect": "/404",
+    "hidden": true
+  }
+]

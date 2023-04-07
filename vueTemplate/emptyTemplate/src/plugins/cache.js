@@ -24,6 +24,7 @@ const sessionCache = {
         this.set(key, JSON.stringify(jsonValue))
       }
     },
+    
     getJSON (key) {
       const value = this.get(key)
       if (value != null) {
